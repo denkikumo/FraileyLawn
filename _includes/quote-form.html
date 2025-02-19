@@ -1,6 +1,6 @@
 <div class="quote-form">
     <h1>Get a Free Quote</h1>
-    <form action="https://formspree.io/f/xkggewkj" method="POST">
+    <form id="quoteForm" action="https://formspree.io/f/xkggewkj" method="POST">
         <label for="name">Name</label>
         <div class="form-group">
             <input type="text" id="name" name="name" placeholder="Your Name" required>
@@ -25,5 +25,6 @@
         </div>
         
         <button type="submit" class="submit-btn">Get a Free Quote</button>
+        <p id="responseMessage" style="display:none; font-weight:bold; text-align:center;"></p>
     </form>
 </div>

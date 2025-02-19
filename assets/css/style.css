@@ -59,7 +59,7 @@ body {
     text-decoration: none;
 }
 
-.phone-contact a {
+.phone-contact a, .phone-contact-b {
     text-decoration: none;
     color: #222222;
 }
@@ -86,12 +86,13 @@ body {
     max-width: 600px;
     padding: 20px;
     margin: 0 auto;
+    margin-top: 0;
 }
 
 .quote-form h1 {
-    color: #028a0f;
-    font-size: 24px;
+    color: #00902F;
     margin-bottom: 15px;
+    margin-top: 0;
 }
 
 .form-group {

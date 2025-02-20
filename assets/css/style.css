@@ -1,16 +1,11 @@
-/* Global Reset */
-body {
-    background-color: white;
-    color: black;
-    font-family: 'Montserrat', Arial, sans-serif;
-    margin: 0;
-    padding: 0 3vw;
-    overflow-x: hidden; /* Prevents horizontal scroll */
-    box-sizing: border-box;
-}
-
 * {
     box-sizing: inherit;
+}
+
+img {
+    width: 100%;
+    height: auto;
+    max-width: 500px;
 }
 
 .container {

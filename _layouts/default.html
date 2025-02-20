@@ -10,6 +10,7 @@
         
         <!-- Meta Keywords -->
         <meta name="keywords" content="lawn care, grass renewal, weed prevention, seeding, dethatching, Frailey Lawn Renewal">
+        <meta name="robots" content="index, follow">
         
         <!-- Open Graph Tags (For Social Sharing) -->
         <meta property="og:title" content="{% if page.title %}{{ page.title }} - Frailey Lawn Renewal{% else %}Frailey Lawn Renewal{% endif %}">
@@ -28,12 +29,23 @@
         <link rel="canonical" href="{{ site.url }}{{ page.url }}">
     
         <!-- Stylesheets -->
-        <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+        <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}" media="all">
         
         <!-- Preload Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap" rel="stylesheet">
+        <style>
+            body {
+                background-color: white;
+                color: black;
+                font-family: 'Montserrat', Arial, sans-serif;
+                margin: 0;
+                padding: 0 3vw;
+                overflow-x: hidden; /* Prevents horizontal scroll */
+                box-sizing: border-box;
+            }
+        </style>
     </head>
     
 <body>
@@ -42,7 +54,7 @@
 
         {{ content }}
     </main>
-    <script src="{{ '/assets/js/form.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/form.js' | relative_url }}" defer></script>
     <script type="application/ld+json">
         {
           "@context": "https://schema.org",

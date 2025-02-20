@@ -9,3 +9,16 @@ plugins:
   - jekyll-feed
   - jekyll-seo-tags
   - jekyll-sitemap
+
+defaults:
+  -
+    scope:
+      path: "assets"
+    values:
+      cache-control: "max-age=31536000, immutable"
+
+compress_html:
+  clippings: all
+  comments: ["<!-- ", " -->"]
+  endings: all
+

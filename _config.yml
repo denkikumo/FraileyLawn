@@ -2,8 +2,9 @@ title: Frailey Lawn Renewal
 description: "Grow a Thicker, Greener, Healthier Lawn"
 baseurl: "" # Leave blank for custom domains
 url: "https://www.fraileylawnrenewal.com"
+theme: null
 
 plugins:
   - jekyll-feed
-  - jekyll-seo-tag
+  - jekyll-seo-tags
   - jekyll-sitemap

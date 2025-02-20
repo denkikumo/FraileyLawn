@@ -1,7 +1,8 @@
 title: Frailey Lawn Renewal
-description: "Grow a Thicker, Greener, Healthier Lawn"
+description: "Frailey Lawn Renewal provides expert lawn care services including seeding, dethatching, and weed prevention."
 baseurl: "" # Leave blank for custom domains
 url: "https://www.fraileylawnrenewal.com"
+permalink: pretty
 theme: null
 
 plugins:

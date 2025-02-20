@@ -1,14 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ page.title }}</title>
-    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Murecho:wght@100..900&display=swap" rel="stylesheet">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% if page.title %}{{ page.title }} - Frailey Lawn Renewal{% else %}Frailey Lawn Renewal - Expert Lawn Care{% endif %}</title>
+    
+        <!-- Meta Description -->
+        <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}Frailey Lawn Renewal provides expert lawn care, including seeding, dethatching, and weed prevention.{% endif %}">
+        
+        <!-- Meta Keywords -->
+        <meta name="keywords" content="lawn care, grass renewal, weed prevention, seeding, dethatching, Frailey Lawn Renewal">
+        
+        <!-- Open Graph Tags (For Social Sharing) -->
+        <meta property="og:title" content="{% if page.title %}{{ page.title }} - Frailey Lawn Renewal{% else %}Frailey Lawn Renewal{% endif %}">
+        <meta property="og:description" content="{% if page.description %}{{ page.description }}{% else %}Frailey Lawn Renewal provides expert lawn care services, including seeding, dethatching, and weed prevention.{% endif %}">
+        <meta property="og:image" content="{{ site.url }}/assets/images/preview-image.jpg">
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+        
+        <!-- Twitter Card (For Twitter Sharing) -->
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="{% if page.title %}{{ page.title }} - Frailey Lawn Renewal{% else %}Frailey Lawn Renewal{% endif %}">
+        <meta name="twitter:description" content="{% if page.description %}{{ page.description }}{% else %}Frailey Lawn Renewal provides expert lawn care services.{% endif %}">
+        <meta name="twitter:image" content="{{ site.url }}/assets/images/preview-image.jpg">
+    
+        <!-- Canonical URL -->
+        <link rel="canonical" href="{{ site.url }}{{ page.url }}">
+    
+        <!-- Stylesheets -->
+        <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+        
+        <!-- Preload Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap" rel="stylesheet">
+    </head>
+    
 <body>
     <main>
         {% include header.html %}
@@ -16,5 +43,29 @@
         {{ content }}
     </main>
     <script src="{{ '/assets/js/form.js' | relative_url }}"></script>
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          "name": "Frailey Lawn Renewal",
+          "image": "{{ site.url }}/assets/images/Favicon/FaviconOriginal.ico",
+          "@id": "{{ site.url }}",
+          "url": "{{ site.url }}",
+          "telephone": "740-729-0520",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Your Address Here",
+            "addressLocality": "Columbus",
+            "addressRegion": "Ohio",
+            "addressCountry": "US"
+          },
+          "openingHours": "Mo-Fr 09:00-17:00",
+          "sameAs": [
+            "https://www.facebook.com/YourPage",
+            "https://www.instagram.com/YourPage"
+          ]
+        }
+        </script>
+        
 </body>
 </html>

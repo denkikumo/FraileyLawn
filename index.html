@@ -11,6 +11,26 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-NZ3GHW9K');</script>
 <!-- End Google Tag Manager -->
 
+<!-- Google tag (gtag.js) event - delayed navigation helper -->
+<script>
+  // Helper function to delay opening a URL until a gtag event is sent.
+  // Call it in response to an action that should navigate to a URL.
+  function gtagSendEvent(url) {
+    var callback = function () {
+      if (typeof url === 'string') {
+        window.location = url;
+      }
+    };
+    gtag('event', 'phone_call_click', {
+      'event_callback': callback,
+      'event_timeout': 2000,
+      // <event_parameters>
+    });
+    return false;
+  }
+</script>
+
+
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Fall Slit Seeding &amp; Lawn Renewal in Columbus, OH | Frailey</title>
@@ -420,6 +440,43 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 </section>
 </main>
+<section aria-labelledby="google-reviews-heading" class="google-reviews-section">
+<div class="google-reviews-inner">
+<div class="google-reviews-summary">
+<div>
+<p class="google-reviews-eyebrow">Customer reviews</p>
+<h2 id="google-reviews-heading">5-star lawn renewal experiences</h2>
+</div>
+<a class="google-reviews-link" href="https://maps.app.goo.gl/aw6bX1Vf6ut5dnpY8" target="_blank" rel="noopener noreferrer" aria-label="Read Frailey Lawn Renewal reviews on Google">Read on Google <span aria-hidden="true">↗</span></a>
+</div>
+<div class="google-reviews-carousel" data-review-carousel>
+<button class="review-arrow review-arrow-prev" type="button" aria-label="Show previous review" data-review-prev>‹</button>
+<div class="google-reviews-viewport" tabindex="0" data-review-viewport>
+<div class="google-reviews-track" data-review-track>
+<article class="google-review-card">
+<div class="google-review-card-top"><div><h3>Joe Pissocra</h3><div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div></div><span class="google-review-source">Google</span></div>
+<blockquote>“I had a great experience with Frailey Lawn Renewal. They were very responsive and showed up right when he said they would. My side yard in the Highland Lakes Community sits under a large shade tree where grass always struggled, but the renovation and treatment they recommended had new grass coming in within the first few weeks. I would highly recommend Frailey Lawn Renewal.”</blockquote>
+</article>
+<article class="google-review-card">
+<div class="google-review-card-top"><div><h3>Craig Walters</h3><div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div></div><span class="google-review-source">Google</span></div>
+<blockquote>“Frailey Lawn Renewal did a lawn renovation for me and provided outstanding service, with a level of professionalism that’s rare in the industry. The team is knowledgeable, dependable, and takes real pride in their work. From clear communication to excellent workmanship, they exceeded my expectations and left my lawn looking thick, healthy, and vibrant.”</blockquote>
+</article>
+<article class="google-review-card">
+<div class="google-review-card-top"><div><h3>Brian Reimer</h3><div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div></div><span class="google-review-source">Google</span></div>
+<blockquote>“Frailey Lawn Renewal worked on our heavily shaded, clay-soil lawn that had patches with no grass and a few other challenges. He was incredibly professional, efficient, kind, and quick to complete the dethatching, overseeding, and pre-emergent fertilizer. The materials and equipment he used were top-notch.”</blockquote>
+</article>
+<article class="google-review-card google-review-card-rating-only">
+<div class="google-review-card-top"><div><h3>Nick Grundy</h3><div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div></div><span class="google-review-source">Google</span></div>
+<blockquote>“5-star rating for Frailey Lawn Renewal.”</blockquote>
+</article>
+</div>
+</div>
+<button class="review-arrow review-arrow-next" type="button" aria-label="Show next review" data-review-next>›</button>
+<div class="review-dots" aria-label="Choose a review" data-review-dots></div>
+</div>
+</div>
+</section>
+
 <footer class="site-footer">
 <div class="footer-master">
 <div class="footer-cta">
@@ -476,5 +533,75 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }
   });
 })();
-</script></body>
+</script><script>
+(() => {
+  document.querySelectorAll('[data-review-carousel]').forEach((carousel) => {
+    const viewport = carousel.querySelector('[data-review-viewport]');
+    const track = carousel.querySelector('[data-review-track]');
+    const cards = Array.from(track?.children || []);
+    const previousButton = carousel.querySelector('[data-review-prev]');
+    const nextButton = carousel.querySelector('[data-review-next]');
+    const dotsWrap = carousel.querySelector('[data-review-dots]');
+    if (!viewport || !track || cards.length < 2) return;
+
+    let activeIndex = 0;
+    let timer;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const cardStep = () => {
+      const card = cards[0];
+      const gap = parseFloat(getComputedStyle(track).columnGap || getComputedStyle(track).gap) || 0;
+      return card.getBoundingClientRect().width + gap;
+    };
+
+    const dots = cards.map((_, index) => {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className = 'review-dot';
+      dot.setAttribute('aria-label', `Show review ${index + 1}`);
+      dot.addEventListener('click', () => goTo(index));
+      dotsWrap?.appendChild(dot);
+      return dot;
+    });
+
+    const updateDots = () => {
+      dots.forEach((dot, index) => dot.setAttribute('aria-current', index === activeIndex ? 'true' : 'false'));
+    };
+
+    const goTo = (index, behavior = reducedMotion ? 'auto' : 'smooth') => {
+      activeIndex = (index + cards.length) % cards.length;
+      viewport.scrollTo({ left: activeIndex * cardStep(), behavior });
+      updateDots();
+    };
+
+    const restartTimer = () => {
+      window.clearInterval(timer);
+      if (!reducedMotion) timer = window.setInterval(() => goTo(activeIndex + 1), 6500);
+    };
+
+    previousButton?.addEventListener('click', () => { goTo(activeIndex - 1); restartTimer(); });
+    nextButton?.addEventListener('click', () => { goTo(activeIndex + 1); restartTimer(); });
+
+    let scrollEndTimer;
+    viewport.addEventListener('scroll', () => {
+      window.clearTimeout(scrollEndTimer);
+      scrollEndTimer = window.setTimeout(() => {
+        activeIndex = Math.max(0, Math.min(cards.length - 1, Math.round(viewport.scrollLeft / cardStep())));
+        updateDots();
+      }, 80);
+    }, { passive: true });
+
+    carousel.addEventListener('mouseenter', () => window.clearInterval(timer));
+    carousel.addEventListener('mouseleave', restartTimer);
+    carousel.addEventListener('focusin', () => window.clearInterval(timer));
+    carousel.addEventListener('focusout', restartTimer);
+    window.addEventListener('resize', () => goTo(activeIndex, 'auto'));
+
+    updateDots();
+    restartTimer();
+  });
+})();
+</script>
+
+</body>
 </html>

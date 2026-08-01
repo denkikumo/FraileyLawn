@@ -3534,3 +3534,46 @@ ol {
         min-height: 200px;
     }
 }
+
+/* =========================
+   Mobile Read More Visibility Fix
+========================= */
+
+@media (max-width: 600px) {
+    .google-review-card {
+        height: auto;
+        min-height: 190px;
+        overflow: visible;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .google-review-card p {
+        flex: 0 1 auto;
+        margin-bottom: 0;
+    }
+
+    .review-read-more {
+        flex: 0 0 auto;
+        align-self: flex-start;
+        margin-top: 10px;
+        position: relative;
+        z-index: 2;
+    }
+
+    .google-review-track {
+        align-items: flex-start;
+        overflow-y: visible;
+    }
+
+    .google-review-carousel {
+        overflow: visible;
+    }
+}
+
+@media (max-width: 380px) {
+    .google-review-card {
+        height: auto;
+        min-height: 200px;
+    }
+}

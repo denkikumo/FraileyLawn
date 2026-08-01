@@ -3389,3 +3389,148 @@ ol {
         min-height: 0;
     }
 }
+
+/* =========================
+   Compact Reviews / Arrow-Only Mobile Navigation
+========================= */
+
+.google-reviews-section {
+    padding-block: clamp(24px, 3vw, 34px);
+}
+
+.google-header {
+    margin-bottom: 20px;
+}
+
+.google-review-card {
+    height: 190px;
+    min-height: 190px;
+    overflow: hidden;
+}
+
+.google-review-card p {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+}
+
+.google-review-card p + p {
+    margin-top: 8px;
+}
+
+.google-review-card.is-expanded {
+    height: auto;
+    min-height: 190px;
+    overflow: visible;
+}
+
+.google-review-card.is-expanded p {
+    display: block;
+    overflow: visible;
+    -webkit-line-clamp: unset;
+}
+
+.review-read-more {
+    margin-top: 10px;
+    padding: 0;
+    color: #1a73e8;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    font-size: 0.76rem;
+    font-weight: 750;
+    line-height: 1.3;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.review-read-more:hover {
+    color: #1557b0;
+}
+
+.review-read-more:focus-visible {
+    outline: 3px solid rgba(26, 115, 232, 0.22);
+    outline-offset: 3px;
+    border-radius: 3px;
+}
+
+@media (max-width: 600px) {
+    .google-reviews-section {
+        padding-block: 24px 28px;
+    }
+
+    .google-header {
+        margin-bottom: 16px;
+    }
+
+    .google-review-carousel {
+        padding-inline: 42px;
+    }
+
+    .google-review-track {
+        gap: 0;
+        overflow-x: hidden;
+        overflow-y: visible;
+        scroll-snap-type: none;
+        touch-action: pan-y;
+        overscroll-behavior-x: none;
+        -webkit-overflow-scrolling: auto;
+    }
+
+    .google-review-card {
+        flex: 0 0 100%;
+        width: 100%;
+        min-width: 100%;
+        max-width: 100%;
+        height: 190px;
+        min-height: 190px;
+        padding: 16px;
+        scroll-snap-align: none;
+    }
+
+    .google-review-card.is-expanded {
+        height: auto;
+        min-height: 190px;
+    }
+
+    .google-review-arrow {
+        display: flex;
+        width: 36px;
+        height: 36px;
+    }
+
+    .google-review-arrow.prev {
+        left: 0;
+    }
+
+    .google-review-arrow.next {
+        right: 0;
+    }
+
+    .google-review-dots {
+        margin-top: 12px;
+    }
+}
+
+@media (max-width: 380px) {
+    .google-review-carousel {
+        padding-inline: 38px;
+    }
+
+    .google-review-arrow {
+        width: 32px;
+        height: 32px;
+    }
+
+    .google-review-card {
+        height: 200px;
+        min-height: 200px;
+        padding: 14px;
+    }
+
+    .google-review-card.is-expanded {
+        height: auto;
+        min-height: 200px;
+    }
+}

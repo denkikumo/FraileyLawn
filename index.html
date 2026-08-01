@@ -500,6 +500,7 @@ Google Reviews
     <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
 
     <p>I had a great experience with Frailey Lawn Renewal. They were very responsive and showed up right when he said they would. My side yard in the Highland Lakes Community sits under a large shade tree where grass always struggled but the renovation and treatment they recommended had new grass coming in within the first few weeks. Again, I would highly recommend Frailey Lawn Renewal.</p>
+<button class="review-read-more" type="button" aria-expanded="false">Read more</button>
 </article>
 
 <article class="google-review-card">
@@ -517,6 +518,7 @@ Google Reviews
     <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
 
     <p>Frailey Lawn Renewal did a lawn renovation for me and provided outstanding service, with a level of professionalism that’s rare in the industry. The team is knowledgeable, dependable, and takes real pride in their work. From clear communication to excellent workmanship, they exceeded my expectations and left my lawn looking thick, healthy, and vibrant. I highly recommend them to anyone looking for reliable lawn renovation and treatment services.</p>
+<button class="review-read-more" type="button" aria-expanded="false">Read more</button>
 </article>
 
 <article class="google-review-card">
@@ -538,6 +540,7 @@ Google Reviews
     <p>He was incredibly professional as he assessed the lawn's condition and prescribed the best course of action to fix my lawn. He was efficient, kind and quick to complete the dethatching + over-seeding + pre-emergent fertilizer. The materials and equipment he used were top-notch.</p>
 
     <p>I'm happy with the work and I'm excited to work with Frailey Lawn Renewal in the future to keep my lawn in top shape.</p>
+<button class="review-read-more" type="button" aria-expanded="false">Read more</button>
 </article>
 
 <article class="google-review-card">
@@ -637,7 +640,6 @@ Google Reviews
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     let activeIndex = 0;
     let autoplayTimer = null;
-    let scrollTimer = null;
     let resizeTimer = null;
 
     const getGap = () => {
@@ -647,26 +649,29 @@ Google Reviews
 
     const getStep = () => cards[0].getBoundingClientRect().width + getGap();
 
-    const getMaximumIndex = () => {
+    const getVisibleCards = () => {
       const step = getStep();
-      if (!step) return cards.length - 1;
+      if (!step) return 1;
 
-      const visibleCards = Math.max(
+      return Math.max(
         1,
         Math.round((track.clientWidth + getGap()) / step)
       );
-
-      return Math.max(0, cards.length - visibleCards);
     };
+
+    const getMaximumIndex = () =>
+      Math.max(0, cards.length - getVisibleCards());
 
     const dots = cards.map((_, index) => {
       const dot = document.createElement('button');
       dot.type = 'button';
       dot.setAttribute('aria-label', `Show review ${index + 1}`);
+
       dot.addEventListener('click', () => {
         goTo(index);
         restartAutoplay();
       });
+
       dotsWrap?.appendChild(dot);
       return dot;
     });
@@ -708,7 +713,7 @@ Google Reviews
       if (!reducedMotion.matches && !document.hidden) {
         autoplayTimer = window.setInterval(() => {
           goTo(activeIndex + 1);
-        }, 6500);
+        }, 7000);
       }
     };
 
@@ -722,41 +727,21 @@ Google Reviews
       restartAutoplay();
     });
 
-    track.addEventListener('scroll', () => {
-      window.clearTimeout(scrollTimer);
-
-      scrollTimer = window.setTimeout(() => {
-        const step = getStep();
-        if (!step) return;
-
-        activeIndex = Math.max(
-          0,
-          Math.min(getMaximumIndex(), Math.round(track.scrollLeft / step))
-        );
-
-        updateControls();
-      }, 90);
-    }, { passive: true });
-
     carousel.addEventListener('mouseenter', stopAutoplay);
     carousel.addEventListener('mouseleave', restartAutoplay);
     carousel.addEventListener('focusin', stopAutoplay);
     carousel.addEventListener('focusout', restartAutoplay);
-    carousel.addEventListener('touchstart', stopAutoplay, { passive: true });
-    carousel.addEventListener('touchend', restartAutoplay, { passive: true });
 
     document.addEventListener('visibilitychange', () => {
-      if (document.hidden) {
-        stopAutoplay();
-      } else {
-        restartAutoplay();
-      }
+      if (document.hidden) stopAutoplay();
+      else restartAutoplay();
     });
 
     reducedMotion.addEventListener?.('change', restartAutoplay);
 
     window.addEventListener('resize', () => {
       window.clearTimeout(resizeTimer);
+
       resizeTimer = window.setTimeout(() => {
         activeIndex = Math.min(activeIndex, getMaximumIndex());
         goTo(activeIndex, 'auto');
@@ -765,6 +750,18 @@ Google Reviews
 
     updateControls();
     restartAutoplay();
+  });
+
+  document.querySelectorAll('.review-read-more').forEach((button) => {
+    button.addEventListener('click', () => {
+      const card = button.closest('.google-review-card');
+      if (!card) return;
+
+      const isExpanded = card.classList.toggle('is-expanded');
+
+      button.setAttribute('aria-expanded', String(isExpanded));
+      button.textContent = isExpanded ? 'Show less' : 'Read more';
+    });
   });
 })();
 </script>
